@@ -87,11 +87,11 @@ def bars():
         i = row['Salary']
         t.fillcolor(col[index])
         t.begin_fill()
-        t.forward(i*wnw*.001)
+        t.forward(wnw/i *100)
         t.left(90)
         t.forward(height)
         t.left(90)
-        t.forward(i*wnw*.001)
+        t.forward(wnw/i *100)
         t.left(90)
         t.forward(height)
         t.write(x, False, align='left') #writing name of employee, I know it clips but it takes like 7 lines of code to fix it and cbb
@@ -99,9 +99,6 @@ def bars():
         nextrow()
         t.left(90)
 
-def ResetChart():
-    wnh = turtle.window_height()
-    wnw = turtle.window_width()
 
 ChartSetup(0,0)
 bars()
@@ -109,7 +106,12 @@ bars()
 col = ['red', 'yellow', 'green', 'blue', 
        'white', 'black', 'orange', 'pink'] 
 
+wnh = turtle.window_height()
+wnw = turtle.window_width()
 # call method on screen click 
+if turtle.window_height()+turtle.window_width() != wnh+wnw:
+    ChartSetup(0,0)
+
 wn.onscreenclick(ChartSetup)
 turtle.done()
 
